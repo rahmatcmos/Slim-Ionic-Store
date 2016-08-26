@@ -1,0 +1,56 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-stable">
+    <h1 class="title">Advanced Search</h1>
+    <div class="buttons">
+      <ion-spinner icon="lines" ng-show="loading"></ion-spinner>
+      <a class="button button-icon icon ion-arrow-down-b" ng-click="closeSearch()"></a>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form name="search" ng-submit="doSearch()">
+      <div class="list list-inset">
+        <label class="item item-input">
+          <span class="input-label">Keyword</span>
+          <input type="text" ng-model="searchData.keyword" placeholder="Enter keyword">
+        </label>
+        <label class="item item-input item-select">
+          <span class="input-label">Brand</span>
+          <select ng-model="searchData.brand">
+            <option value="" ng-selected="true">Please select brand</option>
+            <option ng-repeat="x in brands" value="{{x.slug}}">{{x.name}}</option>
+          </select>
+        </label>
+        <label class="item item-input item-select">
+          <span class="input-label">Category</span>
+          <select ng-model="searchData.category">
+            <option value="" ng-selected="true">Please select category</option>
+            <option ng-repeat="x in categories" value="{{x.slug}}">{{x.name}}</option>
+          </select>
+        </label>
+        <label class="item item-input item-select">
+          <span class="input-label">Order By</span>
+          <select ng-model="searchData.order_by">
+            <option value="">Select Order</option>
+            <option value="name">Name</option>
+            <option value="stock">Stock</option>
+            <option value="price">Price</option>
+            <option value="discount">Discount</option>
+            <option value="created_at">Created At</option>
+            <option value="updated_at">Updated At</option>
+          </select>
+        </label>
+        <label class="item item-input item-select">
+          <span class="input-label">Ordering</span>
+          <select ng-model="searchData.ordering">
+            <option value="">Select Ordering</option>
+            <option value="asc">Asc</option>
+            <option value="desc">Desc</option>
+          </select>
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Search</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

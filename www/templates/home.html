@@ -1,0 +1,17 @@
+<ion-view view-title="Home" hide-back-button="true" ng-init="getApiInfo()">
+  <ion-content>
+    <div ng-hide="apiInfo=={}" class="row" id="containter">
+        <div id="content" class="positive">
+            <h1 class="positive">{{apiInfo.self_name}}</h1>
+            <span class="text-center">
+                <p>{{apiInfo.self_address}},</p>
+                <p>{{apiInfo.self_poscode}}, {{apiInfo.self_city}},</p>
+                <p>{{apiInfo.self_state}}</p>
+                <p>Email: {{apiInfo.self_email}}</p>
+                <p>Fax: {{apiInfo.self_fax}}</p>
+                <p>Phone: {{apiInfo.self_phone}}</p>
+            </span>
+        </div>
+    </div>
+  </ion-content>
+</ion-view>

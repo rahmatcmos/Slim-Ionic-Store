@@ -1,0 +1,57 @@
+<ion-view view-title="Invoice" hide-back-button="true" ng-init="getInvoice()">
+  <ion-content>
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="getInvoice()">
+    </ion-refresher>
+    <div class="list">
+      <div ng-hide="invoices.length != 0" class="item text-center"><h3>No Invoice Receipt</h3></div>
+      <div ng-repeat="x in invoices" class="item item-text-wrap">
+        <table width="100%">
+          <thead>
+            <tr><td class="text-center" colspan="2"><h2 class="ion-pound">ID {{x.id}}</h2></td></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Status</td>
+              <td>
+                <span ng-class="{'assertive':x.status == 0, 'energized':x.status == 1, 'balanced':x.status == 2, 'positive':x.status == 3}">
+                  {{x.status == 0 ? 'UNPAID' : ''}}
+                  {{x.status == 1 ? 'PAID' : ''}}
+                  {{x.status == 2 ? 'SHIP OUT' : ''}}
+                  {{x.status == 3 ? 'COLLECTED' : ''}}
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>Total Price</td>
+              <td>RM{{x.total_price}}</td>
+            </tr>
+            <tr>
+              <td>Total Weight</td>
+              <td>{{x.total_weight}}g</td>
+            </tr>
+            <tr>
+              <td>Delivery</td>
+              <td>{{x.shipping == 'selfpickup' ? 'Self-Collect' : 'Poslaju'}}</td>
+            </tr>
+            <tr>
+              <td>Create Date</td>
+              <td>{{x.created_at}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          <a class="button ion-information-circled button-small button-positive" ng-click="viewInvoice(x.id)"></a>
+          <a class="button ion-close-round button-small button-assertive" ng-hide="x.status != 0" ng-click="deleteInvoices(x.id, $index)"></a>
+        </p>
+      </div>
+      <div class="item text-center" ng-hide="navigation.next_page_url === null" ng-click="nextInvoice()"><i class="ion-android-arrow-dropright-circle"></i> Next Page</div>
+    </div>
+  </ion-content>
+</ion-view>
+
+
+
+
+

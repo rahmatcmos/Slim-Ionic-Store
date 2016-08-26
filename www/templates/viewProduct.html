@@ -1,0 +1,33 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-stable">
+    <h1 class="title">{{productData.name}}</h1>
+    <div class="buttons">
+      <ion-spinner icon="lines" ng-show="loading"></ion-spinner>
+      <a class="button button-icon icon ion-arrow-down-b" ng-click="closeView()"></a>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list card">
+      <div class="item item-divider item-text-wrap">
+        <h2>{{productData.name}}</h2>
+        <p><span class="dark">Category: {{productData.category}}</span></p>
+        <p><span class="dark">Brand: {{productData.brand}}</span></p>
+      </div>
+      <div class="item item-body item-text-wrap">
+        <img class="full-image" ng-src="http://127.0.0.1:2000/assets/image/{{productData.photo_1}}">
+        <span class="dark" ng-bind-html="productData.detail"></span>
+        <a class="button ion-android-favorite button-small button-positive" ng-disabled="!status" ng-click="addToWishlist(x.id)"></a>
+        <a class="button ion-android-cart button-small button-balanced" ng-disabled="!status" ng-click="addToCheckout(x.id)"></a>
+      </div>
+      <div class="item item-divider item-text-wrap">
+        <p>
+          <span class="dark" ng-show="productData.colour !== 'UNKNOWN'">Colour:{{productData.colour}}</span> ~ 
+          <span class="dark" ng-show="productData.size !== 'UNKNOWN'">Size:{{productData.size}}</span> ~ 
+          <span class="dark">Stock:{{productData.stock}}</span> ~ 
+          <span class="dark" ng-class="{'text-cross':productData.discount > 0}">RM{{productData.price}}</span> ~ 
+          <span class="dark" ng-hide="productData.discount <= 0">RM{{((100 - productData.discount) / 100) * productData.price}} ~ {{productData.discount}}% Off</span>
+        </p>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

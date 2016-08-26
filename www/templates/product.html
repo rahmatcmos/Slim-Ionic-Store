@@ -1,0 +1,39 @@
+<ion-view view-title="Product" hide-back-button="true" ng-init="getProduct()">
+  <div class="bar bar-subheader bar-stable item-input-inset">
+    <button class="button button-icon button-clear ion-wand button-small" ng-click="search()"></button>
+    <label class="item-input-wrapper">
+      <i class="icon ion-edit placeholder-icon"></i>
+      <input type="search" ng-model="searchData.keyword" placeholder="Search">
+    </label>
+    <button class="button button-positive button-small" ng-click="doSearch()">Search</button>
+  </div>
+  
+  <ion-content class="has-header has-subheader">
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="getProduct()">
+    </ion-refresher>
+    <div class="list">
+      <div ng-repeat="x in products" class="item item-thumbnail-left item-text-wrap">
+        <div class="item-image">
+          <img ng-click="viewProduct(x.id)" ng-src="http://127.0.0.1:2000/assets/image/thumb_{{x.photo_1}}">
+          <p>
+            <a class="button ion-android-favorite button-small button-positive" ng-disabled="!status" ng-click="addToWishlist(x.id)"></a>
+            <a class="button ion-android-cart button-small button-balanced" ng-disabled="!status" ng-click="addToCheckout(x.id, $index)"></a>
+          </p>
+        </div>
+        <h2 class="ion-pinpoint" ng-click="viewProduct(x.id)"> {{x.name}}</h2>
+        <p><span class="dark">Category: {{x.category}}</span></p>
+        <p><span class="dark">Brand: {{x.brand}}</span></p>
+        <p>
+          <span ng-class="{'balanced':x.afterDisc != undefined, 'dark':x.afterDisc == undefined}">RM{{ x.afterDisc == undefined ? x.price : x.afterDisc }}</span> ~ 
+          <span ng-class="{'assertive':x.stock <= 0, 'dark':x.stock > 0}">{{x.stock}} Available</span>
+        </p>
+        <p>
+          <a ng-click="calcDiscount(x.price, x.discount, $index)" ng-hide="(x.discount <= 0) || (x.afterDisc == undefined ? false : true)" class="button icon-left ion-calculator button-small button-royal">{{ x.afterDisc == undefined ? x.discount+'% Off' : 'Calculated' }}</a>
+        </p>
+      </div>
+      <div class="item text-center" ng-hide="navigation.next_page_url === null" ng-click="nextProduct()"><i class="ion-android-arrow-dropright-circle"></i> More Products</div>
+    </div>
+  </ion-content>
+</ion-view>

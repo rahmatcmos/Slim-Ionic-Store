@@ -1,0 +1,74 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-stable">
+    <h1 class="title">Invoice Detail</h1>
+    <div class="buttons">
+      <ion-spinner icon="lines" ng-show="loading"></ion-spinner>
+      <a class="button button-icon icon ion-arrow-down-b" ng-click="closeView()"></a>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list card">
+      <div class="item item-divider item-text-wrap">
+        <h3 class="text-center">Paid To</h3>
+        <p>{{apiInfo.self_name}},</p>
+        <p>{{apiInfo.self_address}},</p>
+        <p>{{apiInfo.self_poscode}}, {{apiInfo.self_city}},</p>
+        <p>{{apiInfo.self_state}}</p>
+        <p>Email: {{apiInfo.self_email}}</p>
+        <p>Fax: {{apiInfo.self_fax}}</p>
+        <p>Phone: {{apiInfo.self_phone}}</p>
+      </div>
+      <div class="item item-divider item-text-wrap">
+        <h3 class="text-center">Invoice To</h3>
+        <p>Customer ID: {{ invoiceData.user }}</p>
+        <p>Billing: {{ invoiceData.billing }}</p>
+        <p>Contact No: {{ invoiceData.mobile }}</p>
+        <p>Invoice ID: {{ invoiceData.id }}</p>
+        <p>Status: {{ invoiceData.status }}</p>
+        <p>Date: {{ invoiceData.created_at }}</p>
+      </div>
+      <div class="item item-divider item-text-wrap">
+        <h3 class="text-center">Shipping Info</h3>
+        <p ng-hide="invoiceData.shipping_record != null">Self-Collect: {{ invoiceData.collector }}</p>
+        <span ng-hide="invoiceData.shipping_record == null" >
+          <p>{{ invoiceData.shipping_record.recipient }}</p>
+          <p>{{ invoiceData.shipping_record.first_address }}</p>
+          <p ng-hide="!invoiceData.shipping_record.second_address">{{ invoiceData.shipping_record.second_address }}</p>
+          <p>{{ invoiceData.shipping_record.poscode }}, {{ invoiceData.shipping_record.city }}</p>
+          <p>{{ invoiceData.shipping_record.state }}</p>
+          <p>Serial: <a ng-hide="invoiceData.shipping_record.serial == null" ng-href="http://poslaju.com.my/track-trace/#trackingIds={{ invoiceData.shipping_record.serial }}" target="_blank">{{ invoiceData.shipping_record.serial }}</a></p>
+          <p>Cost: RM{{ invoiceData.shipping_record.cost }}</p>
+        </span>
+      </div>
+      <div class="item item-divider item-text-wrap">
+      <h3 class="text-center">Product List</h3>
+        <div class="list">
+          <div ng-click="closeView()" class="item item-text-wrap" ng-repeat="x in invoiceData.checkout_products">
+            <p>ID: <a ng-href="#/app/product/view/{{x.product}}">{{ x.product }}</a></p>
+            <p>
+              <span ng-hide="!x.discount">Discount: {{ x.discount }}%</span>
+              <span>Price: RM{{ x.price }}</span>
+            </p>
+            <p>
+              <span>Amount: {{ x.amount }}</span> ~ 
+              <span>Colour: {{ x.colour }}</span>
+            </p>
+            <p>
+              <span>Size: {{ x.size }}</span> ~ 
+              <span>Weight: {{ x.weight }}g</span>
+            </p>
+          </div>
+        <div class="item item-text-wrap">
+          <p class="text-right">Total Amount: {{ invoiceData.total_amount }}</p>
+          <p class="text-right">Total Price: RM{{ invoiceData.total_price }}<span ng-hide="!invoiceData.shipping_record.cost"> (Included Shipping Cost)</span></p>
+          <p class="text-right">Total Weight: {{ invoiceData.total_weight }}g</p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>
+
+
+
+

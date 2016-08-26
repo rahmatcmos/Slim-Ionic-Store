@@ -1,0 +1,26 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-stable">
+    <h1 class="title">Login</h1>
+    <div class="buttons">
+      <ion-spinner icon="lines" ng-show="loading"></ion-spinner>
+      <a class="button button-icon icon ion-arrow-down-b" ng-click="closeLogin()"></a>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form name="login" ng-submit="doLogin()">
+      <div class="list list-inset">
+        <label class="item item-input">
+          <span class="input-label"><i style="padding-right:5px" ng-class="{'ion-checkmark-circled positive':loginData.username, 'ion-close-circled assertive':!loginData.username}"></i>Email</span>
+          <input style="margin-right:20px" type="email" ng-model="loginData.username" required>
+        </label>
+        <label class="item item-input">
+          <span class="input-label"><i style="padding-right:5px" ng-class="{'ion-checkmark-circled positive':loginData.password, 'ion-close-circled assertive':!loginData.password}"></i>Password</span>
+          <input style="margin-right:20px" type="password" ng-model="loginData.password" required>
+        </label>
+        <label class="item">
+          <button ng-disabled="!loginData.username || !loginData.password" class="button button-block button-positive" type="submit">Log In</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

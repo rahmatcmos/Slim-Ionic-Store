@@ -1,0 +1,32 @@
+<ion-view view-title="Wishlist" hide-back-button="true" ng-init="getWishlist()">
+  <ion-content>
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="getWishlist()">
+    </ion-refresher>
+    <div class="list">
+      <div ng-hide="wishlists.length != 0" class="item text-center"><h3>No Product In Wishlist</h3></div>
+      <div ng-repeat="x in wishlists" class="item item-thumbnail-left item-text-wrap">
+        <img ng-src="http://127.0.0.1:2000/assets/image/thumb_{{x.photo_1}}">
+        <h2>{{x.name}}</h2>
+        <p>
+          <span ng-class="{'text-cross assertive':x.discount > 0, 'dark':x.discount <= 0}">RM{{x.price}}</span>
+          <span class="dark" ng-hide="x.discount <= 0"> RM{{((100 - x.discount) / 100) * x.price}} ~ {{x.discount}}% Off</span>
+        </p>
+        <p>
+          <span class="dark">{{x.stock}}</span> Available ~ 
+          <span class="dark" ng-show="x.weight !== 'UNKNOWN'">Weight: {{x.weight}}g</span>
+        </p>
+        <p>
+          <span class="dark" ng-show="x.size !== 'UNKNOWN'">Size: {{x.size}}</span> ~ 
+          <span class="dark" ng-show="x.colour !== 'UNKNOWN'">Colour: {{x.colour}}</span>
+        </p>
+        <p>
+          <a class="button ion-pinpoint button-small button-positive" ng-href="#/app/product/view/{{x.id}}"></a>
+          <a class="button ion-android-cart button-small button-balanced" ng-disabled="!status" ng-click="addToCheckout(x.id, $index)"></a>
+          <a class="button ion-close-round button-small button-assertive" ng-click="deleteWishlist(x.wid, $index)"></a>
+        </p>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

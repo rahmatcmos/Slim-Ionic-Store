@@ -1,0 +1,12 @@
+/* Empty. Add your own CSS if you like */
+.text-cross {
+  text-decoration: line-through;
+}
+#containter {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+}
+#content {}

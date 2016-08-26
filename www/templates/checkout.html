@@ -1,0 +1,41 @@
+<ion-view view-title="Checkout" hide-back-button="true" ng-init="getCheckout()">
+  <ion-content>
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="getCheckout()">
+    </ion-refresher>
+    <div class="list">
+      <div ng-hide="checkouts.length != 0" class="item text-center"><h3>No Product In Checkout</h3></div>
+      <div ng-repeat="x in checkouts" class="item item-thumbnail-left item-text-wrap">
+        <div class="item-image">
+          <img ng-src="http://127.0.0.1:2000/assets/image/thumb_{{x.photo_1}}">
+          <p>
+            <a class="button ion-pinpoint button-small button-positive" ng-href="#/app/product/view/{{x.product}}"></a>
+            <a class="button ion-close-round button-small button-assertive" ng-click="deleteCheckout(x.id, $index)"></a>
+          </p>
+        </div>
+        <h2>{{x.name}}</h2>
+        <p>
+          <span ng-class="{'text-cross assertive':x.discount > 0, 'dark':x.discount <= 0}">RM{{x.price}}</span>
+          <span class="dark" ng-hide="x.discount <= 0"> RM{{((100 - x.discount) / 100) * x.price}} ~ {{x.discount}}% Off</span>
+        </p>
+        <p>
+          <span class="dark">Amount: {{x.amount}}</span> ~ 
+          <span class="dark" ng-show="x.weight !== 'UNKNOWN'">Weight: {{x.weight}}g</span>
+        </p>
+        <p>
+          <span class="dark" ng-show="x.size !== 'UNKNOWN'">Size: {{x.size}}</span> ~ 
+          <span class="dark" ng-show="x.colour !== 'UNKNOWN'">Colour: {{x.colour}}</span>
+        </p>
+      </div>
+      <div class="item text-center" ng-hide="(checkouts.length == 0) || (checkouts == null)">
+        <button class="button button-positive button-small" ng-click="makeInvoice()">Generate Invoice</button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
+
+
+
+
+
