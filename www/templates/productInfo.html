@@ -7,7 +7,7 @@
         <p><span class="dark">Brand: {{productData.brand}}</span></p>
       </div>
       <div class="item item-body item-text-wrap">
-        <img class="full-image" ng-src="http://127.0.0.1:2000/assets/image/{{productData.photo_1}}">
+        <img class="full-image" ng-src="{{resourcesURL}}/assets/image/{{productData.photo_1}}">
         <span class="dark" ng-bind-html="productData.detail"></span>
         <a class="button ion-android-favorite button-small button-positive" ng-disabled="!status" ng-click="addToWishlist(x.id)"></a>
         <a class="button ion-android-cart button-small button-balanced" ng-disabled="!status" ng-click="addToCheckout(x.id)"></a>

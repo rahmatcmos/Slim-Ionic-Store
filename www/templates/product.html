@@ -16,7 +16,7 @@
     <div class="list">
       <div ng-repeat="x in products" class="item item-thumbnail-left item-text-wrap">
         <div class="item-image">
-          <img ng-click="viewProduct(x.id)" ng-src="http://127.0.0.1:2000/assets/image/thumb_{{x.photo_1}}">
+          <img ng-click="viewProduct(x.id)" ng-src="{{resourcesURL}}/assets/image/thumb_{{x.photo_1}}">
           <p>
             <a class="button ion-android-favorite button-small button-positive" ng-disabled="!status" ng-click="addToWishlist(x.id)"></a>
             <a class="button ion-android-cart button-small button-balanced" ng-disabled="!status" ng-click="addToCheckout(x.id, $index)"></a>

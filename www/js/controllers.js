@@ -7,6 +7,7 @@ angular.module('starter.controllers', ['LocalStorageModule'])
   $scope.regData = {};
   $scope.regError = {};
   $rootScope.loading = false;
+  $rootScope.resourcesURL = ApiEndpoint.resourcesURL;
   $scope.user = localStorageService.get('user') || {};
   $scope.status = localStorageService.get('status') || false;
   $scope.id_token = localStorageService.get('id_token') || null;

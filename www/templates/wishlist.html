@@ -7,7 +7,7 @@
     <div class="list">
       <div ng-hide="wishlists.length != 0" class="item text-center"><h3>No Product In Wishlist</h3></div>
       <div ng-repeat="x in wishlists" class="item item-thumbnail-left item-text-wrap">
-        <img ng-src="http://127.0.0.1:2000/assets/image/thumb_{{x.photo_1}}">
+        <img ng-src="{{resourcesURL}}/assets/image/thumb_{{x.photo_1}}">
         <h2>{{x.name}}</h2>
         <p>
           <span ng-class="{'text-cross assertive':x.discount > 0, 'dark':x.discount <= 0}">RM{{x.price}}</span>

@@ -7,7 +7,8 @@
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.filters', 'angular-jwt', 'LocalStorageModule'])
 
 .constant('ApiEndpoint', {
-  url: 'http://localhost:8100/api'
+  url: 'http://localhost:8100/api',
+  resourcesURL: 'http://localhost:2000'
 })
 
 .run(function($ionicPlatform, $rootScope, $state, localStorageService) {

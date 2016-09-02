@@ -8,7 +8,7 @@
       <div ng-hide="checkouts.length != 0" class="item text-center"><h3>No Product In Checkout</h3></div>
       <div ng-repeat="x in checkouts" class="item item-thumbnail-left item-text-wrap">
         <div class="item-image">
-          <img ng-src="http://127.0.0.1:2000/assets/image/thumb_{{x.photo_1}}">
+          <img ng-src="{{resourcesURL}}/assets/image/thumb_{{x.photo_1}}">
           <p>
             <a class="button ion-pinpoint button-small button-positive" ng-href="#/app/product/view/{{x.product}}"></a>
             <a class="button ion-close-round button-small button-assertive" ng-click="deleteCheckout(x.id, $index)"></a>
